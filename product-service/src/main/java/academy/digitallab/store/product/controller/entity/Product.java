@@ -1,7 +1,6 @@
-package academy.digitallab.store.product.entity;
+package academy.digitallab.store.product.controller.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

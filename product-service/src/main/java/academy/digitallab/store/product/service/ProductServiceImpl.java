@@ -1,10 +1,9 @@
 package academy.digitallab.store.product.service;
 
-import academy.digitallab.store.product.entity.Category;
-import academy.digitallab.store.product.entity.Product;
+import academy.digitallab.store.product.controller.entity.Category;
+import academy.digitallab.store.product.controller.entity.Product;
 import academy.digitallab.store.product.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -26,10 +25,6 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public Product createProduct(Product product) {
-        Product product01=getProductById(product.getId());
-        if(product01!=null){
-            return product;
-        }
         product.setStatus("CREATED");
         product.setCreateAt(new Date());
         return productRepository.save(product);

@@ -1,7 +1,7 @@
 package academy.digitallab.store.product;
 
-import academy.digitallab.store.product.entity.Category;
-import academy.digitallab.store.product.entity.Product;
+import academy.digitallab.store.product.controller.entity.Category;
+import academy.digitallab.store.product.controller.entity.Product;
 import academy.digitallab.store.product.repository.ProductRepository;
 import academy.digitallab.store.product.service.ProductService;
 import academy.digitallab.store.product.service.ProductServiceImpl;
@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Date;
