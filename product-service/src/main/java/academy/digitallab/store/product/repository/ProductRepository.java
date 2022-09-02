@@ -1,7 +1,7 @@
 package academy.digitallab.store.product.repository;
 
-import academy.digitallab.store.product.controller.entity.Category;
-import academy.digitallab.store.product.controller.entity.Product;
+import academy.digitallab.store.product.entity.Category;
+import academy.digitallab.store.product.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

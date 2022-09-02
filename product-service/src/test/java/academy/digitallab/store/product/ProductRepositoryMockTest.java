@@ -1,7 +1,7 @@
 package academy.digitallab.store.product;
 
-import academy.digitallab.store.product.controller.entity.Category;
-import academy.digitallab.store.product.controller.entity.Product;
+import academy.digitallab.store.product.entity.Category;
+import academy.digitallab.store.product.entity.Product;
 import academy.digitallab.store.product.repository.ProductRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
