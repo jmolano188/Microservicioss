@@ -3,12 +3,11 @@ package academy.digitalab.store.customer.service;
 import academy.digitalab.store.customer.entity.Customer;
 import academy.digitalab.store.customer.entity.Region;
 import academy.digitalab.store.customer.repository.CustomerRepository;
-import lombok.RequiredArgsConstructor;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 @Service
-@RequiredArgsConstructor
 public class CustomerServiceImpl implements CustomerService{
     @Autowired
     private CustomerRepository customerRepository;
@@ -24,7 +23,7 @@ public class CustomerServiceImpl implements CustomerService{
 
     @Override
     public Customer createCustomer(Customer customer) {
-        Customer customer1=customerRepository.findByNumberID(customer.getNumberID())
+        Customer customer1=customerRepository.findByNumberID(customer.getNumberID());
         if(customer1!=null){
             return customer1;
         }
