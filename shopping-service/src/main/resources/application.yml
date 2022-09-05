@@ -4,7 +4,7 @@ server:
   error:
     include-message: always
 # To See H2 Console in Browser:
-# http://localhost:8093/h2-console
+# http://localhost:8091/h2-console
 # Enabling H2 Console
 spring:
   h2:
@@ -23,7 +23,8 @@ spring:
   # ===============================
   # JPA / HIBERNATE
   # ===============================
-  jpa:defer-datasource-initialization: true
+  Jpa:
+    defer-datasource-initialization: true
 
   spring:
     cloud:
@@ -44,3 +45,5 @@ spring:
 logging:
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n"
+
+

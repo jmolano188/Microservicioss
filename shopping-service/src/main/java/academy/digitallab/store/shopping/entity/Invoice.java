@@ -12,7 +12,7 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "tbl_invoices")
+@Table(name = "tlb_invoices")
 public class Invoice {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,13 +25,13 @@ public class Invoice {
     @Column(name = "create_at")
     @Temporal(TemporalType.DATE)
     private Date creatAt;
-   @Valid
-
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-   @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-   @JoinColumn(name = "invoice_id")
+    private String status;
+    @Valid
+    @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "invoice_id")
     private List<InvoiceItem> items;
-    private String state;
+
 
     public Invoice(){
         items=new ArrayList<>();

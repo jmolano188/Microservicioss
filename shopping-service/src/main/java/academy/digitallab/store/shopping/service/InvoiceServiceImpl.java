@@ -11,7 +11,7 @@ import java.util.List;
 public class InvoiceServiceImpl implements InvoiceService{
     @Autowired
     private InvoiceRepository invoiceRepository;
-    private InvoiceItemRepository invoiceItemRepository;
+
     @Override
     public List<Invoice> findInvoiceAll() {
         return invoiceRepository.findAll();
@@ -23,7 +23,7 @@ public class InvoiceServiceImpl implements InvoiceService{
         if (invoice1!=null){
             return invoice1;
         }
-        invoice.setState("CREATED");
+        invoice.setStatus("CREATED");
         return invoiceRepository.save(invoice);
     }
 
@@ -47,7 +47,7 @@ public class InvoiceServiceImpl implements InvoiceService{
         if (invoice1==null){
             return  null;
         }
-        invoice1.setState("DELETE");
+        invoice1.setStatus("DELETE");
         return invoiceRepository.save(invoice1);
     }
 

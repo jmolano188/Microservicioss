@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
+@RequestMapping("/invoices")
 public class InvoiceRest {
     @Autowired
     private InvoiceService invoiceService;
@@ -70,7 +71,7 @@ public class InvoiceRest {
             log.error("Unable to delete. Invoice with id {} not found.", id);
             return  ResponseEntity.notFound().build();
         }
-        invoice.setState("DELETE");
+        invoice.setStatus("DELETE");
         invoice = invoiceService.deleteInvoice(invoice);
         return ResponseEntity.ok(invoice);
     }
