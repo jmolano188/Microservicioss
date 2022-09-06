@@ -14,10 +14,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 @Service
 public class InvoiceServiceImpl implements InvoiceService{
     @Autowired
     private InvoiceRepository invoiceRepository;
+    @Autowired
+    private InvoiceItemRepository invoiceItemsRepository;
     @Autowired
     private CustomerClient customerClient;
     @Autowired
