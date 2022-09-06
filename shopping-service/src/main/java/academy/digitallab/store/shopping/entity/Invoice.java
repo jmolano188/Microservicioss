@@ -1,5 +1,6 @@
 package academy.digitallab.store.shopping.entity;
 
+import academy.digitallab.store.shopping.model.Customer;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import org.springframework.validation.annotation.Validated;
@@ -26,6 +27,8 @@ public class Invoice {
     @Temporal(TemporalType.DATE)
     private Date creatAt;
     private String status;
+    @Transient
+    private Customer customer;
     @Valid
     @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
