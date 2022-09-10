@@ -1,9 +1,11 @@
 package academy.digitallab.store.shopping.controller;
 
+import academy.digitallab.store.shopping.client.fallbackcreateInvoice;
 import academy.digitallab.store.shopping.entity.Invoice;
 import academy.digitallab.store.shopping.service.InvoiceService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,6 +34,7 @@ public class InvoiceRest {
         }
         return ResponseEntity.ok(invoices);
     }
+    @CircuitBreaker(name = "getInvoiceCB", fallbackMethod ="fallbackgetInvoice" )
     @GetMapping("/{id}")
     public ResponseEntity<Invoice> getInvoice(@PathVariable("id")Long id){
         log.info("fetching invoice with id {}",id);
@@ -42,6 +45,7 @@ public class InvoiceRest {
         }
         return ResponseEntity.ok(invoice);
     }
+    @CircuitBreaker(name = "createInvoiceCB", fallbackMethod = "fallbackcreateInvoice")
     @PostMapping
     public ResponseEntity<Invoice> createInvoice(@Valid @RequestBody Invoice invoice, BindingResult result){
         log.info("Creating invoice :{}",invoice);
@@ -94,5 +98,11 @@ public class InvoiceRest {
             e.printStackTrace();
         }
         return jsonString;
+    }
+    private ResponseEntity<Invoice> createInvoiceCB(@Valid @RequestBody Invoice invoice, BindingResult result,RuntimeException e){
+        return new ResponseEntity("No se ha podido actualizar el stock",HttpStatus.OK);
+    }
+    private ResponseEntity<Invoice> getInvoiceCB(@PathVariable("id")Long id, RuntimeException e){
+    return new ResponseEntity("No se ha podido acceder a la informacion del usuario",HttpStatus.OK);
     }
 }

@@ -37,7 +37,7 @@ public class InvoiceServiceImpl implements InvoiceService{
         if (invoice1!=null){
             return invoice1;
         }
-        invoice1.setStatus("CREATED");
+        invoice.setStatus("CREATED");
         invoice1=invoiceRepository.save(invoice);
         invoice1.getItems().forEach( invoiceItem -> {
             productClient.updateStockProduct( invoiceItem.getProductId(), invoiceItem.getQuantity() * -1);

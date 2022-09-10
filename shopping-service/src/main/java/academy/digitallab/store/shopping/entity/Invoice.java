@@ -2,6 +2,7 @@ package academy.digitallab.store.shopping.entity;
 
 import academy.digitallab.store.shopping.model.Customer;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Builder;
 import lombok.Data;
 import org.springframework.validation.annotation.Validated;
 
@@ -12,7 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 @Data
-@Entity
+@Entity @Builder
 @Table(name = "tlb_invoices")
 public class Invoice {
     @Id
