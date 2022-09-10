@@ -1,6 +1,4 @@
 package academy.digitallab.store.shopping.controller;
-
-import academy.digitallab.store.shopping.client.fallbackcreateInvoice;
 import academy.digitallab.store.shopping.entity.Invoice;
 import academy.digitallab.store.shopping.service.InvoiceService;
 import com.fasterxml.jackson.core.JsonProcessingException;

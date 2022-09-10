@@ -13,7 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 @Data
-@Entity @Builder
+@Entity
 @Table(name = "tlb_invoices")
 public class Invoice {
     @Id
