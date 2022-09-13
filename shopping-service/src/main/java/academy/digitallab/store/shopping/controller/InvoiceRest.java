@@ -97,10 +97,10 @@ public class InvoiceRest {
         }
         return jsonString;
     }
-    private ResponseEntity<Invoice> createInvoiceCB(@Valid @RequestBody Invoice invoice, BindingResult result,RuntimeException e){
+    private ResponseEntity<Invoice> createInvoiceCB(@Valid @RequestBody Invoice invoice, BindingResult result,Throwable e){
         return new ResponseEntity("No se ha podido actualizar el stock",HttpStatus.OK);
     }
-    private ResponseEntity<Invoice> getInvoiceCB(@PathVariable("id")Long id, RuntimeException e){
+    private ResponseEntity<Invoice> getInvoiceCB(@PathVariable("id")Long id, Throwable e){
     return new ResponseEntity("No se ha podido acceder a la informacion del usuario",HttpStatus.OK);
     }
 }
