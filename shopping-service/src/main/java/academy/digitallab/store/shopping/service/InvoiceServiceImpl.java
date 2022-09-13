@@ -8,10 +8,13 @@ import academy.digitallab.store.shopping.model.Customer;
 import academy.digitallab.store.shopping.model.Product;
 import academy.digitallab.store.shopping.repository.InvoiceItemRepository;
 import academy.digitallab.store.shopping.repository.InvoiceRepository;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 
@@ -32,6 +35,7 @@ public class InvoiceServiceImpl implements InvoiceService{
     }
 
     @Override
+    @CircuitBreaker(name = "createInvoiceCB",fallbackMethod = "fallbackCreateInvoice")
     public Invoice createInvoice(Invoice invoice) {
         Invoice invoice1=invoiceRepository.findByNumberInvoice(invoice.getNumberInvoice());
         if (invoice1!=null){
@@ -58,6 +62,7 @@ public class InvoiceServiceImpl implements InvoiceService{
         invoice1.setItems(invoice.getItems());
         return invoiceRepository.save(invoice1);
     }
+    private final Map<Long,Invoice> cache=new HashMap<>();
 
     @Override
     public Invoice deleteInvoice(Invoice invoice) {
@@ -70,6 +75,7 @@ public class InvoiceServiceImpl implements InvoiceService{
     }
 
     @Override
+    @CircuitBreaker(name = "getInvoiceCB", fallbackMethod = "fallbackGetInvoice")
     public Invoice getInvoice(Long id) {
 
        Invoice invoice= invoiceRepository.findById(id).orElse(null);
@@ -85,4 +91,10 @@ public class InvoiceServiceImpl implements InvoiceService{
        }
 return invoice;
     }
+  private  Invoice fallbackGetInvoice(Long id,Throwable e)  {
+      return cache.getOrDefault(id,new Invoice());
+  }
+  private Invoice fallbackCreateInvoice(Invoice invoice, Throwable e){
+        return cache.getOrDefault(invoice.getId(),new  Invoice());
+  }
 }
