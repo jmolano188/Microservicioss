@@ -34,8 +34,8 @@ public class InvoiceServiceImpl implements InvoiceService{
         return invoiceRepository.findAll();
     }
 
-    @Override
     @CircuitBreaker(name = "createInvoiceCB",fallbackMethod = "fallbackCreateInvoice")
+    @Override
     public Invoice createInvoice(Invoice invoice) {
         Invoice invoice1=invoiceRepository.findByNumberInvoice(invoice.getNumberInvoice());
         if (invoice1!=null){
@@ -74,8 +74,8 @@ public class InvoiceServiceImpl implements InvoiceService{
         return invoiceRepository.save(invoice1);
     }
 
-    @Override
     @CircuitBreaker(name = "getInvoiceCB", fallbackMethod = "fallbackGetInvoice")
+    @Override
     public Invoice getInvoice(Long id) {
 
        Invoice invoice= invoiceRepository.findById(id).orElse(null);
@@ -95,6 +95,6 @@ return invoice;
       return cache.getOrDefault(id,new Invoice());
   }
   private Invoice fallbackCreateInvoice(Invoice invoice, Throwable e){
-        return cache.getOrDefault(invoice.getId(),new  Invoice());
+        return cache.getOrDefault(invoice.getNumberInvoice(),new  Invoice());
   }
 }
